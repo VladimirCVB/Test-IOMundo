@@ -19,7 +19,7 @@ namespace Test_IOMundo.Repository
         {
             return await _context.Offers.Where(of => of.CheckInDate == requestObject.DateForm &&
             of.StayDurationNights == requestObject.Duration &&
-            of.PersonCombination == requestObject.PeopleCount)
+            of.PersonCombination == requestObject.PersonCombination)
             .ToListAsync();
         }
     }

@@ -14,7 +14,7 @@ namespace Test_IOMundo.ViewModels
 
         [Display(Name = "Person Count")]
         [Required(ErrorMessage = "Person Count is required")]
-        public string PeopleCount { get; set; }
+        public string PersonCombination { get; set; }
         public LoginViewModel LoginViewModel { get; set; }
     }
 }
