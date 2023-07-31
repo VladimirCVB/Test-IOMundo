@@ -19,7 +19,7 @@ namespace Test_IOMundo.Controllers
         {
             if (!ModelState.IsValid) return View();
 
-            if (await _accountRepository.Login(requestObject.LoginViewModel) == false) return null;
+            if (await _accountRepository.Login(requestObject.LoginViewModel) == false) return View();
 
             IEnumerable<Offer> offers = await _offerRepository.GetByRequstObject(requestObject);
             return View(offers);
