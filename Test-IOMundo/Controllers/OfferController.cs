@@ -8,16 +8,19 @@ namespace Test_IOMundo.Controllers
     public class OfferController : Controller
     {
         private readonly IOfferRepository _offerRepository;
-        private readonly AccountController _accountController;
+        private readonly IAccountRepository _accountRepository;
 
-        public OfferController(IOfferRepository offerRepository, AccountController accountController)
+        public OfferController(IOfferRepository offerRepository, IAccountRepository accountRepository)
         {
             _offerRepository = offerRepository;
-            _accountController = accountController;
+            _accountRepository = accountRepository;
         }
         public async Task<IActionResult?> SearchAvailability(RequestObject requestObject)
         {
-            if (await _accountController.Login(requestObject.LoginViewModel) == false) return null;
+            if (!ModelState.IsValid) return View();
+
+            if (await _accountRepository.Login(requestObject.LoginViewModel) == false) return null;
+
             IEnumerable<Offer> offers = await _offerRepository.GetByRequstObject(requestObject);
             return View(offers);
         }
